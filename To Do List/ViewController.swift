@@ -14,14 +14,27 @@ class ViewController: UIViewController {
     @IBOutlet weak var addBarButton: UIBarButtonItem!
     
     var defaultsData =  UserDefaults.standard
-    var toDoArray = ["Learn Swift", "Build Apps", "Change the World!"]
-    var toDoNotesArray = ["check all my hw", "revamp app again", "take my ideas to the schools's venture coompeititon and win a big check"]
+    var toDoArray = [String()]
+    var toDoNotesArray = [String()]
+    
+   // var toDoArray = ["Learn Swift", "Build Apps", "Change the World!"]
+   // var toDoNotesArray = ["check all my hw", "revamp app again", "take my ideas to the schools's venture coompeititon and win a big check"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        
+        toDoArray = defaultsData.stringArray(forKey: "toDoArray") ?? [String] ()
+        toDoNotesArray = defaultsData.stringArray(forKey: "toDoNotesArray") ?? [String] ()
+        
     }
+    
+    func saveDefaultsData() {
+        defaultsData.set(toDoArray, forKey: "toDoArray")
+        defaultsData.set(toDoNotesArray, forKey: "toDoNotesArray")
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditItem" {
             let destination = segue.destination as! DetailViewController
@@ -46,8 +59,7 @@ class ViewController: UIViewController {
             toDoNotesArray.append(sourceViewController.toDoNoteItem!)
             tableView.insertRows(at: [newIndexPath], with: .automatic)
         }
-        defaultsData.set(toDoArray, forKey: "toDoArray")
-        defaultsData.set(toDoNotesArray, forKey: "toDoNotesArray")
+       saveDefaultsData()
     }
 
     
@@ -93,6 +105,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         toDoNotesArray.remove(at: sourceIndexPath.row)
         toDoArray.insert(itemToMove, at: destinationIndexPath.row)
         toDoNotesArray.insert(noteToMove, at: destinationIndexPath.row)
-        
+        saveDefaultsData()
     }
 }
