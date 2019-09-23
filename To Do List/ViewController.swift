@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var editBarButton: UIBarButtonItem!
     @IBOutlet weak var addBarButton: UIBarButtonItem!
     
+    var defaultsData =  UserDefaults.standard
     var toDoArray = ["Learn Swift", "Build Apps", "Change the World!"]
     var toDoNotesArray = ["check all my hw", "revamp app again", "take my ideas to the schools's venture coompeititon and win a big check"]
     
@@ -45,6 +46,8 @@ class ViewController: UIViewController {
             toDoNotesArray.append(sourceViewController.toDoNoteItem!)
             tableView.insertRows(at: [newIndexPath], with: .automatic)
         }
+        defaultsData.set(toDoArray, forKey: "toDoArray")
+        defaultsData.set(toDoNotesArray, forKey: "toDoNotesArray")
     }
 
     
