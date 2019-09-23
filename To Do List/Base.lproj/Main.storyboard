@@ -88,15 +88,20 @@
                                 <action selector="cancelPressed:" destination="pqu-Eb-TmZ" id="hlo-qr-zQf"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Yvn-Iq-1jx"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Yvn-Iq-1jx">
+                            <connections>
+                                <segue destination="gz8-lx-6pf" kind="unwind" identifier="UnwindFromSave" unwindAction="unwindfromDetailViewControllerWithSegue:" id="m78-C6-rxh"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="toDoField" destination="Pjq-pD-W3P" id="gwe-9c-kGF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tof-bf-UeQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="gz8-lx-6pf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2717" y="100"/>
+            <point key="canvasLocation" x="2417" y="99"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="A65-fK-sNZ">
@@ -132,7 +137,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3IW-v3-IIN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1971" y="754"/>
+            <point key="canvasLocation" x="1787" y="748"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
